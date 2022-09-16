@@ -1,4 +1,4 @@
-## Contract JSON attributes
+## solidity NFT contract JSON attributes
 
 <p align=center>
     <img src="docs/logo/favicon.png" width="300"  />
