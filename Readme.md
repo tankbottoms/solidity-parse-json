@@ -1,6 +1,10 @@
-## Onchain traits
+## Contract JSON attributes
 
-#### Build and run
+<p align=center>
+    <img src="docs/logo/favicon.png" width="300"  />
+</p>
+
+#### build
 
 ```bash
 
