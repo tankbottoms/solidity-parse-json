@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Noun_Glasses" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#New_Gradient_Swatch_36-2);
+      }
+
+      .cls-2 {
+        fill: url(#New_Gradient_Swatch_51-2);
+      }
+
+      .cls-3 {
+        fill: url(#New_Gradient_Swatch_51);
+      }
+
+      .cls-4 {
+        fill: url(#New_Gradient_Swatch_36);
+      }
+
+      .cls-5 {
+        stroke-width: 2.08px;
+      }
+
+      .cls-5, .cls-6, .cls-7 {
+        fill: #c0272d;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6 {
+        stroke-width: 1.91px;
+      }
+
+      .cls-7 {
+        stroke-width: 1.89px;
+      }
+    </style>
+    <linearGradient id="New_Gradient_Swatch_51" data-name="New Gradient Swatch 51" x1="213.45" y1="216.52" x2="284.87" y2="216.52" gradientTransform="translate(-35.03 48.6) rotate(-10.41)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff3c00"/>
+      <stop offset=".14" stop-color="#ff4d00"/>
+      <stop offset="1" stop-color="#ffba00"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_36" data-name="New Gradient Swatch 36" x1="214.14" y1="213.3" x2="256.43" y2="213.3" gradientTransform="translate(-34.68 46.04) rotate(-10.41)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6c67"/>
+      <stop offset="1" stop-color="#da413d"/>
+    </linearGradient>
+    <linearGradient id="New_Gradient_Swatch_51-2" data-name="New Gradient Swatch 51" x1="109.02" y1="196.42" x2="180.44" y2="196.42" gradientTransform="translate(-33.12 29.4) rotate(-10.41)" xlink:href="#New_Gradient_Swatch_51"/>
+    <linearGradient id="New_Gradient_Swatch_36-2" data-name="New Gradient Swatch 36" x1="107.7" y1="193.2" x2="149.99" y2="193.2" gradientTransform="translate(-32.8 26.47) rotate(-10.41)" xlink:href="#New_Gradient_Swatch_36"/>
+  </defs>
+  <g id="Mars">
+    <polygon class="cls-5" points="315.65 213.6 292.15 209.2 289.08 225.55 312.59 229.95 308.19 253.45 324.54 256.51 328.94 233.01 332 216.66 315.65 213.6"/>
+    <rect class="cls-5" x="182.53" y="193.66" width="32.65" height="17.46" transform="translate(40.63 -33.13) rotate(10.6)"/>
+    <g>
+      <rect class="cls-3" x="218.49" y="185.85" width="61.34" height="61.34" transform="translate(43.24 -41.47) rotate(10.41)"/>
+      <rect class="cls-4" x="219.47" y="182.38" width="31.63" height="61.85" transform="translate(42.43 -39.01) rotate(10.41)"/>
+    </g>
+    <path class="cls-6" d="M219.67,166.14l-14.8,79.04,78.1,14.62,14.8-79.04-78.1-14.62Zm51.86,76.73l-49.87-9.34,9.45-50.47,49.87,9.34-9.45,50.47Z"/>
+    <g>
+      <rect class="cls-2" x="114.06" y="165.75" width="61.34" height="61.34" transform="translate(37.89 -22.93) rotate(10.41)"/>
+      <rect class="cls-1" x="113.03" y="162.27" width="31.63" height="61.85" transform="translate(37.04 -20.11) rotate(10.41)"/>
+    </g>
+    <path class="cls-7" d="M114.88,145.02l-14.83,79.24,75.56,14.14,14.83-79.24-75.56-14.14Zm49.75,76.5l-48.25-9.03,9.47-50.6,48.25,9.03-9.47,50.6Z"/>
+  </g>
+</svg>
