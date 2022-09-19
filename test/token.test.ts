@@ -17,20 +17,18 @@ describe('Deploy NFT index.json', () => {
 
     generateNft = await generateNftFactory
       .connect(deployer)
-      .deploy('https://ipfs.io/ipfs/', '{hash}', json, json.length);
+      .deploy(
+        'https://ipfs.io/ipfs/',
+        'bafybeievnjzzku5oeo7lwi2txhchjlj5rzek4fo3lcqt7iiogm642luziq',
+        json,
+        json.length,
+      );
   });
 
   it('Generate NFT based on traits', async () => {
-    let g: any;
-    g = await generateNft.generateImage();
-    console.dir(g);
-    console.log(`\n`);
+    await generateNft.generateImage();
 
-    const a = await generateNft.getNames();
-    console.log(a);
-    console.log(`\n`);
-
-    false && console.dir(g, { depth: 2 });
+    console.log(await generateNft.getDataUri(1));
   });
 });
 

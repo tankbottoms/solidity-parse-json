@@ -1,72 +1,73 @@
-<svg id="token" width="1
-000" height="1000" viewB
-ox="0 0 1080 1080" fill=
-"none" xmlns="http://www
-.w3.org/2000/svg"><g id=
-"placeholder"><imag
-e x="50%" y="50%" width=
-"1000" href="" style="tr
-ansform: translate(-500p
-x, -500px)" /><image x="
-50%" y="50%" width="1000
-" href="https://ipfs.io/
-ipfs/{hash}/Background/2
-" style="transform: tran
-slate(-500px, -500px)" /
->
-<image x="50%" y="50%"
-width="1000" href="https
-://ipfs.io/ipfs/{hash}/B
-rows/0" style="transform
-: translate(-500px, -500
-px)" />
 
-<image x="50%" y=
-"50%" width="1000" href=
-"https://ipfs.io/ipfs/{h
-ash}/Collar/2" style="tr
-ansform: translate(-500p
-x, -500px)" /><image x="
-50%" y="50%" width="1000
-" href="https://ipfs.io/
-ipfs/{hash}/Ears/0" styl
-e="transform: translate(
--500px, -500px)" /><imag
-e x="50%" y="50%" width=
-"1000" href="https://ipf
-s.io/ipfs/{hash}/Eyes/5"
+<svg id="token" width="1000" height="1000" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="placeholder">
+  <image x="50%" y="50%" width="1000" href="" style="transform: translate(-500px, -500px)" />
+  <image x="50%" y="50%" width="1000" href="https://ipfs.io/ipfs/bafybeievnjzzku5oeo7lwi2txhchjlj5rzek4fo3lcqt7iiogm642luziq/Background/2" style="transform: translate(-500px, -500px)" />
+  <image x="50%" y="50%"width="1000" href="https://ipfs.io/ipfs/bafybeievnjzzku5oeo7lwi2txhchjlj5rzek4fo3lcqt7iiogm642luziq/Brows/1" style="transform: translate(-500px,-500px)" />
+  <image x="50%" y="50%" width="1000"href="https://ipfs.io/ip
+fs/bafybeievnjzzku5oeo7l
+wi2txhchjlj5rzek4fo3lcqt
+7iiogm642luziq/Collar/9"
 style="transform: trans
 late(-500px, -500px)" />
 <image x="50%" y="50%" w
 idth="1000" href="https:
-//ipfs.io/ipfs/{hash}/Fu
-r/2" style="transform: t
-ranslate(-500px, -500px)
-" /><image x="50%" y="50
-%" width="1000" href="ht
-tps://ipfs.io/ipfs/{hash
-}/Headwear/14" style="tr
+//ipfs.io/ipfs/bafybeiev
+njzzku5oeo7lwi2txhchjlj5
+rzek4fo3lcqt7iiogm642luz
+iq/Ears/1" style="transf
+orm: translate(-500px, -
+500px)" /><image x="50%"
+y="50%" width="1000" hr
+ef="https://ipfs.io/ipfs
+/bafybeievnjzzku5oeo7lwi
+2txhchjlj5rzek4fo3lcqt7i
+iogm642luziq/Eyes/7" sty
+le="transform: translate
+(-500px, -500px)" /><ima
+ge x="50%" y="50%" width
+="1000" href="https://ip
+fs.io/ipfs/bafybeievnjzz
+ku5oeo7lwi2txhchjlj5rzek
+4fo3lcqt7iiogm642luziq/F
+ur/9" style="transform:
+translate(-500px, -500px
+)" /><image x="50%" y="5
+0%" width="1000" href="h
+ttps://ipfs.io/ipfs/bafy
+beievnjzzku5oeo7lwi2txhc
+hjlj5rzek4fo3lcqt7iiogm6
+42luziq/Headwear/17" sty
+le="transform: translate
+(-500px, -500px)" /><ima
+ge x="50%" y="50%" width
+="1000" href="https://ip
+fs.io/ipfs/bafybeievnjzz
+ku5oeo7lwi2txhchjlj5rzek
+4fo3lcqt7iiogm642luziq/N
+ipples/1" style="transfo
+rm: translate(-500px, -5
+00px)" /><image x="50%"
+y="50%" width="1000" hre
+f="https://ipfs.io/ipfs/
+bafybeievnjzzku5oeo7lwi2
+txhchjlj5rzek4fo3lcqt7ii
+ogm642luziq/Nose/7" styl
+e="transform: translate(
+-500px, -500px)" /><imag
+e x="50%" y="50%" width=
+"1000" href="https://ipf
+s.io/ipfs/bafybeievnjzzk
+u5oeo7lwi2txhchjlj5rzek4
+fo3lcqt7iiogm642luziq/No
+un_glasses/23" style="tr
 ansform: translate(-500p
 x, -500px)" /><image x="
 50%" y="50%" width="1000
 " href="https://ipfs.io/
-ipfs/{hash}/Nipples/0" s
-tyle="transform: transla
-te(-500px, -500px)" /><i
-mage x="50%" y="50%" wid
-th="1000" href="https://
-ipfs.io/ipfs/{hash}/Nose
-/0" style="transform: tr
-anslate(-500px, -500px)"
-/><image x="50%" y="50%
-" width="1000" href="htt
-ps://ipfs.io/ipfs/{hash}
-/Noun_glasses/12" style=
-"transform: translate(-5
-00px, -500px)" /><image
-x="50%" y="50%" width="1
-000" href="https://ipfs.
-io/ipfs/{hash}/Signature
-/0" style="transform: tr
-anslate(-500px, -500px)"
-/></g></svg>
+ipfs/bafybeievnjzzku5oeo
+7lwi2txhchjlj5rzek4fo3lc
+qt7iiogm642luziq/Signatu
+re/0" style="transform:
+translate(-500px, -500px
+)" /></g></svg>

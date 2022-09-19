@@ -10,30 +10,37 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from '../common';
+} from "../common";
 
 export interface GatewayUtilLibInterface extends utils.Interface {
   functions: {
-    'generateSeed(address,uint256,uint256)': FunctionFragment;
+    "generateSeed(address,uint256,uint256)": FunctionFragment;
   };
 
-  getFunction(nameOrSignatureOrTopic: 'generateSeed'): FunctionFragment;
+  getFunction(nameOrSignatureOrTopic: "generateSeed"): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'generateSeed',
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
+    functionFragment: "generateSeed",
+    values: [
+      PromiseOrValue<string>,
+      PromiseOrValue<BigNumberish>,
+      PromiseOrValue<BigNumberish>
+    ]
   ): string;
 
-  decodeFunctionResult(functionFragment: 'generateSeed', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "generateSeed",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -48,14 +55,16 @@ export interface GatewayUtilLib extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>,
+    eventFilter?: TypedEventFilter<TEvent>
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -67,7 +76,7 @@ export interface GatewayUtilLib extends BaseContract {
       _account: PromiseOrValue<string>,
       _blockNumber: PromiseOrValue<BigNumberish>,
       _other: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[BigNumber] & { seed: BigNumber }>;
   };
 
@@ -75,7 +84,7 @@ export interface GatewayUtilLib extends BaseContract {
     _account: PromiseOrValue<string>,
     _blockNumber: PromiseOrValue<BigNumberish>,
     _other: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   callStatic: {
@@ -83,7 +92,7 @@ export interface GatewayUtilLib extends BaseContract {
       _account: PromiseOrValue<string>,
       _blockNumber: PromiseOrValue<BigNumberish>,
       _other: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
@@ -94,7 +103,7 @@ export interface GatewayUtilLib extends BaseContract {
       _account: PromiseOrValue<string>,
       _blockNumber: PromiseOrValue<BigNumberish>,
       _other: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
@@ -103,7 +112,7 @@ export interface GatewayUtilLib extends BaseContract {
       _account: PromiseOrValue<string>,
       _blockNumber: PromiseOrValue<BigNumberish>,
       _other: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

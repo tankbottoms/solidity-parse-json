@@ -7,53 +7,68 @@ import type {
   BigNumberish,
   BytesLike,
   CallOverrides,
+  ContractTransaction,
+  Overrides,
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from './common';
+} from "./common";
 
 export declare namespace GenerateNft {
-  export type TokenImageStruct = {
-    image: PromiseOrValue<string>;
-    atributes: PromiseOrValue<string>[];
-  };
+  export type TokenImageStruct = { image: PromiseOrValue<string> };
 
-  export type TokenImageStructOutput = [string, string[]] & {
-    image: string;
-    atributes: string[];
-  };
+  export type TokenImageStructOutput = [string] & { image: string };
 }
 
 export interface GenerateNftInterface extends utils.Interface {
   functions: {
-    'generateImage()': FunctionFragment;
-    'getDataUri(uint256)': FunctionFragment;
-    'getNames()': FunctionFragment;
+    "generateImage()": FunctionFragment;
+    "getCountTokens()": FunctionFragment;
+    "getDataUri(uint256)": FunctionFragment;
+    "getNames()": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: 'generateImage' | 'getDataUri' | 'getNames',
+    nameOrSignatureOrTopic:
+      | "generateImage"
+      | "getCountTokens"
+      | "getDataUri"
+      | "getNames"
   ): FunctionFragment;
 
-  encodeFunctionData(functionFragment: 'generateImage', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: 'getDataUri',
-    values: [PromiseOrValue<BigNumberish>],
+    functionFragment: "generateImage",
+    values?: undefined
   ): string;
-  encodeFunctionData(functionFragment: 'getNames', values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "getCountTokens",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getDataUri",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(functionFragment: "getNames", values?: undefined): string;
 
-  decodeFunctionResult(functionFragment: 'generateImage', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getDataUri', data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: 'getNames', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "generateImage",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "getCountTokens",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: "getDataUri", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "getNames", data: BytesLike): Result;
 
   events: {};
 }
@@ -68,14 +83,16 @@ export interface GenerateNft extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>,
+    eventFilter?: TypedEventFilter<TEvent>
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -83,11 +100,15 @@ export interface GenerateNft extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    generateImage(overrides?: CallOverrides): Promise<[string]>;
+    generateImage(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    getCountTokens(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<
       [GenerateNft.TokenImageStructOutput] & {
         tokenImage: GenerateNft.TokenImageStructOutput;
@@ -97,21 +118,27 @@ export interface GenerateNft extends BaseContract {
     getNames(overrides?: CallOverrides): Promise<[string[]]>;
   };
 
-  generateImage(overrides?: CallOverrides): Promise<string>;
+  generateImage(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  getCountTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
   getDataUri(
     tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<GenerateNft.TokenImageStructOutput>;
 
   getNames(overrides?: CallOverrides): Promise<string[]>;
 
   callStatic: {
-    generateImage(overrides?: CallOverrides): Promise<string>;
+    generateImage(overrides?: CallOverrides): Promise<void>;
+
+    getCountTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<GenerateNft.TokenImageStructOutput>;
 
     getNames(overrides?: CallOverrides): Promise<string[]>;
@@ -120,22 +147,30 @@ export interface GenerateNft extends BaseContract {
   filters: {};
 
   estimateGas: {
-    generateImage(overrides?: CallOverrides): Promise<BigNumber>;
+    generateImage(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    getCountTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     getNames(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    generateImage(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    generateImage(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    getCountTokens(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     getNames(overrides?: CallOverrides): Promise<PopulatedTransaction>;

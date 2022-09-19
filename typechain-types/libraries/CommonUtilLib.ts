@@ -10,30 +10,33 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from 'ethers';
-import type { FunctionFragment, Result } from '@ethersproject/abi';
-import type { Listener, Provider } from '@ethersproject/providers';
+} from "ethers";
+import type { FunctionFragment, Result } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from '../common';
+} from "../common";
 
 export interface CommonUtilLibInterface extends utils.Interface {
   functions: {
-    'generateTraits(uint256)': FunctionFragment;
+    "generateTraits(uint256)": FunctionFragment;
   };
 
-  getFunction(nameOrSignatureOrTopic: 'generateTraits'): FunctionFragment;
+  getFunction(nameOrSignatureOrTopic: "generateTraits"): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: 'generateTraits',
-    values: [PromiseOrValue<BigNumberish>],
+    functionFragment: "generateTraits",
+    values: [PromiseOrValue<BigNumberish>]
   ): string;
 
-  decodeFunctionResult(functionFragment: 'generateTraits', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "generateTraits",
+    data: BytesLike
+  ): Result;
 
   events: {};
 }
@@ -48,14 +51,16 @@ export interface CommonUtilLib extends BaseContract {
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined,
+    toBlock?: string | number | undefined
   ): Promise<Array<TEvent>>;
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>,
+    eventFilter?: TypedEventFilter<TEvent>
   ): Array<TypedListener<TEvent>>;
   listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+  removeAllListeners<TEvent extends TypedEvent>(
+    eventFilter: TypedEventFilter<TEvent>
+  ): this;
   removeAllListeners(eventName?: string): this;
   off: OnEvent<this>;
   on: OnEvent<this>;
@@ -65,19 +70,19 @@ export interface CommonUtilLib extends BaseContract {
   functions: {
     generateTraits(
       _seed: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<[BigNumber] & { traits: BigNumber }>;
   };
 
   generateTraits(
     _seed: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides,
+    overrides?: CallOverrides
   ): Promise<BigNumber>;
 
   callStatic: {
     generateTraits(
       _seed: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
@@ -86,14 +91,14 @@ export interface CommonUtilLib extends BaseContract {
   estimateGas: {
     generateTraits(
       _seed: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     generateTraits(
       _seed: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

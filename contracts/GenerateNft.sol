@@ -11,7 +11,6 @@ contract GenerateNft {
   
   struct TokenImage {
     string image;
-    string[] atributes;
   }
   
   struct Asset {
@@ -36,6 +35,10 @@ contract GenerateNft {
     _saveData(assetsJson, numElements);
   }
 
+  function getCountTokens() external view returns(uint256) {
+    return _tokenSizer;
+  }
+
   function getDataUri(uint256 tokenId) external view returns(TokenImage memory tokenImage) {
     tokenImage = _tokenImages[tokenId];
   }
@@ -56,7 +59,7 @@ contract GenerateNft {
     } 
   }
 
-  function generateImage() external view returns(string memory) {
+  function generateImage() external {
     string[] memory traits = new string[](_nameAssets.length + 1);
     
     for (uint256 index = 1; index < _nameAssets.length + 1; index++) {
@@ -71,15 +74,13 @@ contract GenerateNft {
         '</g></svg>'
     ));
 
-
-    return image;
+  _tokenImages[_tokenSizer + 1] = TokenImage(image);
+  _tokenSizer  = _tokenSizer + 1;
   }
 
   function _saveData(string memory _json, uint256 _elements) internal {
-    uint256 flag;
-    uint256 tokenNext;
     JsmnLib.Token[] memory tokens;
-    (flag, tokens, tokenNext) = JsmnLib.parse(_json, _elements);
+    (, tokens, ) = JsmnLib.parse(_json, _elements);
     uint256 counter = 1;
     for (uint256 i = 1; i < tokens.length; i=i+5) {
       string memory key = JsmnLib.getBytes(_json, tokens[i].start, tokens[i].end);

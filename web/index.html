@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.0/web3.min.js"
+      integrity="sha512-bSQ2kf76XufUYS/4XinoHLp5S4lNOyRv0/x5UJACiOMy8ueqTNwRFfUZWmWpwnczjRp9SjiF1jrXbGEim7Y0Xg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      #token {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      All token count: <span id="count"></span>
+
+      <button id="generate">Generate NFT</button>
+    </div>
+    <div id="svg"></div>
+    <script>
+      const web3 = new Web3('http://localhost:8545');
+      const abi = [
+        {
+          inputs: [
+            {
+              internalType: 'string',
+              name: 'ipfsGateway',
+              type: 'string',
+            },
+            {
+              internalType: 'string',
+              name: 'ipfsHash',
+              type: 'string',
+            },
+            {
+              internalType: 'string',
+              name: 'assetsJson',
+              type: 'string',
+            },
+            {
+              internalType: 'uint256',
+              name: 'numElements',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'nonpayable',
+          type: 'constructor',
+        },
+        {
+          inputs: [],
+          name: 'generateImage',
+          outputs: [],
+          stateMutability: 'nonpayable',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'getCountTokens',
+          outputs: [
+            {
+              internalType: 'uint256',
+              name: '',
+              type: 'uint256',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [
+            {
+              internalType: 'uint256',
+              name: 'tokenId',
+              type: 'uint256',
+            },
+          ],
+          name: 'getDataUri',
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: 'string',
+                  name: 'image',
+                  type: 'string',
+                },
+              ],
+              internalType: 'struct GenerateNft.TokenImage',
+              name: 'tokenImage',
+              type: 'tuple',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+        {
+          inputs: [],
+          name: 'getNames',
+          outputs: [
+            {
+              internalType: 'string[]',
+              name: '',
+              type: 'string[]',
+            },
+          ],
+          stateMutability: 'view',
+          type: 'function',
+        },
+      ];
+      const contract = new web3.eth.Contract(abi, '0x5FbDB2315678afecb367f032d93F642f64180aa3');
+      showImage();
+      //contract.methods.getDataUri(1).call().then(console.log);
+      document.getElementById('generate').addEventListener('click', async () => {
+        await contract.methods
+          .generateImage()
+          .send({ from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266' });
+        showImage();
+      });
+      function showImage() {
+        document.getElementById('svg').innerHTML = '';
+        contract.methods
+          .getCountTokens()
+          .call()
+          .then((r) => {
+            document.getElementById('count').innerHTML = r;
+            for (let index = 1; index <= +r; index++) {
+              contract.methods
+                .getDataUri(index)
+                .call()
+                .then((s) => {
+                  const svg = decodeURIComponent(escape(window.atob(s[0])));
+                  document.getElementById('svg').innerHTML += svg;
+                });
+            }
+          });
+      }
+    </script>
+  </body>
+</html>

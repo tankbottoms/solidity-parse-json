@@ -15,3 +15,14 @@ yarn run generateAssetJson
 npx hardhat test
 
 ```
+
+#### Start web page
+
+```bash
+
+yarn
+yarn run node
+yarn run deploy
+yarn run start-web
+
+```
