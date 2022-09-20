@@ -11,7 +11,7 @@
     "test:all": "yarn run rm-macosx-system-files && yarn run generateAssetJson && yarn run minifySvg && yarn run test",
     "node": "npx hardhat node",
     "deploy": "npx hardhat run ./scripts/deploy.ts --network localhost",
-    "start-web": "ts-node ./web/script.ts"
+    "start-web": "ts-node ./scripts/serve.ts"
   },
   "devDependencies": {
     "@fleekhq/fleek-storage-js": "^1.0.22",

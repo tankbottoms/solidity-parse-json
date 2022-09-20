@@ -33,10 +33,14 @@ const config: HardhatUserConfig = {
       url: 'http://localhost:8545',
       timeout: 1_000_000_000,
     },
-    // rinkeby: {
-    //   url: `${process.env.RINKEBY_URL}/${process.env.ALCHEMY_RINKEBY_KEY}`,
-    //   accounts: [`${process.env.PRIVATE_KEY}`],
-    // },
+    rinkeby: {
+      url: `${process.env.INFURA_GATEWAY_RINKEBY}/${process.env.INFURA_API_KEY}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
+    goerli: {
+      url: `${process.env.ALCHEMY_GATEWAY_GOERLI}/${process.env.ALCHEMY_API_KEY}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
   },
   contractSizer: {
     alphaSort: true,
