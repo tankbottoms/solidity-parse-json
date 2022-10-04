@@ -23,12 +23,6 @@ import type {
   PromiseOrValue,
 } from "./common";
 
-export declare namespace GenerateNft {
-  export type TokenImageStruct = { image: PromiseOrValue<string> };
-
-  export type TokenImageStructOutput = [string] & { image: string };
-}
-
 export interface GenerateNftInterface extends utils.Interface {
   functions: {
     "generateImage()": FunctionFragment;
@@ -109,11 +103,7 @@ export interface GenerateNft extends BaseContract {
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<
-      [GenerateNft.TokenImageStructOutput] & {
-        tokenImage: GenerateNft.TokenImageStructOutput;
-      }
-    >;
+    ): Promise<[string] & { tokenImage: string }>;
 
     getNames(overrides?: CallOverrides): Promise<[string[]]>;
   };
@@ -127,7 +117,7 @@ export interface GenerateNft extends BaseContract {
   getDataUri(
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
-  ): Promise<GenerateNft.TokenImageStructOutput>;
+  ): Promise<string>;
 
   getNames(overrides?: CallOverrides): Promise<string[]>;
 
@@ -139,7 +129,7 @@ export interface GenerateNft extends BaseContract {
     getDataUri(
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<GenerateNft.TokenImageStructOutput>;
+    ): Promise<string>;
 
     getNames(overrides?: CallOverrides): Promise<string[]>;
   };

@@ -3,23 +3,30 @@ pragma solidity 0.8.6;
 
 import './libraries/JsmnLib.sol';
 import './libraries/CommonUtilLib.sol';
+import 'hardhat/console.sol';
 
 import '@openzeppelin/contracts/utils/Strings.sol';
 import '@openzeppelin/contracts/utils/Base64.sol';
 
 contract GenerateNft {
-  
+  struct Attributes {
+    string trait_type;
+    string trait_name;
+  }
+
   struct TokenImage {
     string image;
+    string attributes;
+    string name;
+    string description;
   }
   
   struct Asset {
-    uint256 cardinality;
-    uint256 offset;
-    uint256 mask;
+    string name;
+    uint256 index;
   }
 
-  mapping(uint256 => Asset) private _assets;
+  mapping(string => string[]) private _assets;
   string[] private _nameAssets;
 
   mapping(uint256 => TokenImage) private _tokenImages;
@@ -39,8 +46,28 @@ contract GenerateNft {
     return _tokenSizer;
   }
 
-  function getDataUri(uint256 tokenId) external view returns(TokenImage memory tokenImage) {
-    tokenImage = _tokenImages[tokenId];
+  function getDataUri(uint256 tokenId) external view returns(string memory tokenImage) {
+    TokenImage memory image = _tokenImages[tokenId];
+
+    tokenImage = Base64.encode(abi.encodePacked(
+      '{',
+      '"name":',
+      '"',
+      image.name,
+      '",',
+      '"description":',
+      '"',
+      image.description,
+      '",',
+      '"attributes":',
+      image.attributes,
+      ',',
+      '"image":',
+      '"',
+      image.image,
+      '"',
+      '}'
+    ));
   }
 
   function getNames() external view returns(string[] memory) {
@@ -59,14 +86,42 @@ contract GenerateNft {
     } 
   }
 
-  function generateImage() external {
-    string[] memory traits = new string[](_nameAssets.length + 1);
-    
-    for (uint256 index = 1; index < _nameAssets.length + 1; index++) {
-        Asset memory asset = _assets[index];
-        uint256 rand = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, _tokenSizer))) % asset.cardinality;
-        traits[index] = string(abi.encodePacked(_ipfsGateway, _ipfsHash,'/',_nameAssets[index - 1],'/',Strings.toString(rand)));
+  function _generateAttributes(Attributes[] memory _attr) internal pure returns(string memory attr) {
+    for (uint256 index = 0; index < _attr.length; index++) {
+      attr = string(abi.encodePacked(
+        attr,
+        '{',
+        '"trait_type":',
+        '"',
+        _attr[index].trait_type,
+        '",',
+        '"trait_name":',
+        '"',
+        _attr[index].trait_name,
+        '"',
+        '}',
+        index+1 == _attr.length ? '' : ','
+      ));
     }
+  }
+
+  function generateImage() external {
+    string[] memory traits = new string[](_nameAssets.length);
+    Attributes[] memory attr = new Attributes[](_nameAssets.length);
+    for (uint256 index = 0; index < _nameAssets.length; index++) {
+      string[] memory assets = _assets[_nameAssets[index]];
+      unchecked {
+        uint256 rand = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, _tokenSizer))) % assets.length;
+        traits[index] = string(abi.encodePacked(_ipfsGateway, _ipfsHash,'/',_nameAssets[index],'/',Strings.toString(rand)));
+        attr[index] = Attributes(_nameAssets[index], assets[rand]);
+      }
+     }
+
+    string memory attributes = string(abi.encodePacked(
+      '[',
+        _generateAttributes(attr),
+      ']'
+    ));
 
     string memory image = Base64.encode(abi.encodePacked(
         '<svg id="token" width="1000" height="1000" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="placeholder">',
@@ -74,28 +129,27 @@ contract GenerateNft {
         '</g></svg>'
     ));
 
-  _tokenImages[_tokenSizer + 1] = TokenImage(image);
-  _tokenSizer  = _tokenSizer + 1;
+    _tokenImages[_tokenSizer + 1] = TokenImage(image, attributes, 'name', 'description');
+    _tokenSizer  = _tokenSizer + 1;
   }
 
   function _saveData(string memory _json, uint256 _elements) internal {
     JsmnLib.Token[] memory tokens;
-    (, tokens, ) = JsmnLib.parse(_json, _elements);
-    uint256 counter = 1;
-    for (uint256 i = 1; i < tokens.length; i=i+5) {
-      string memory key = JsmnLib.getBytes(_json, tokens[i].start, tokens[i].end);
-      if (bytes(key).length > 0) {
-        _nameAssets.push(key);        
-      }
-      if (i + 1 < tokens.length) {
-        string memory value = JsmnLib.getBytes(_json, tokens[i+1].start, tokens[i+1].end);    
-        uint256 cardinality;
-        uint256 offset;
-        uint256 mask;
-        (cardinality, offset, mask) = CommonUtilLib.getPrimitive(value,4);
-        _assets[counter] = Asset(cardinality, offset, mask);
-      }
-      counter++;
-    }
+   
+    uint256 len;
+    (, tokens, len) = JsmnLib.parse(_json, _elements);
+   
+    for (uint256 index = 1; index < len; index++) {
+
+      if (tokens[index].jsmnType == JsmnLib.JsmnType.ARRAY) {
+        string memory name = JsmnLib.getBytes(_json, tokens[index-1].start, tokens[index-1].end);
+        _nameAssets.push(name);
+        _assets[name] = new string[](tokens[index].size + 1);
+        for (uint256 i = 1; i < tokens[index].size + 1; i++) {
+          string memory traitName = JsmnLib.getBytes(_json, tokens[index+i].start, tokens[index+i].end);
+          _assets[name][i] = traitName;
+          }
+        }
+     }
   }
 }

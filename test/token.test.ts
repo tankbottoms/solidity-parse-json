@@ -6,14 +6,9 @@ describe('Deploy NFT index.json', () => {
   let generateNft: any;
   let json: any;
   before(async () => {
-    json = fs.readFileSync('./assets/index.json', { encoding: 'utf8' });
+    json = fs.readFileSync('./assets/assetIndex.json', { encoding: 'utf8' });
     [deployer] = await ethers.getSigners();
     const generateNftFactory = await ethers.getContractFactory('GenerateNft', deployer);
-
-    console.log(`\n${deployer.address}\n`);
-    console.log(`\nasset/index.json => \n`);
-    console.log(json);
-    console.log(`\n`);
 
     generateNft = await generateNftFactory
       .connect(deployer)
@@ -27,17 +22,14 @@ describe('Deploy NFT index.json', () => {
 
   it('Generate NFT based on traits', async () => {
     await generateNft.generateImage();
+    const token = await generateNft.getDataUri(1);
 
-    console.log(await generateNft.getDataUri(1));
+    const buff = Buffer.from(token, 'base64');
+    let json = JSON.parse(buff.toString('utf8'));
+
+    console.log(json);
+
+    const buffSvg = Buffer.from(json.image, 'base64');
+    fs.writeFileSync('./token.svg', buffSvg.toString('utf8'));
   });
 });
-
-// Parse token 0x7b226b6579223a205b226b657931222c226b657932222c226b657933222c226b657934225d2c20226b657931223a207b226368696c644b6579223a202276616c7565227d2c20226b657932223a20312c20226b657933223a2022737472696e67227d
-
-// { -> 0x7b
-// } -> 0x7d
-// " -> 0x22
-// : -> 0x3a
-// [ -> 0x5b
-// , -> 0x2c
-// ] -> 0x5d

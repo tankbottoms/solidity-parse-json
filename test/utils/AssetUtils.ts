@@ -17,7 +17,7 @@ export function listAssets(location: string, extension = '.png'): { [key: string
       const ccontents = fs.readdirSync(path.join(location, c));
       for (const cc of ccontents) {
         if (fs.lstatSync(path.join(location, c, cc)).isFile() && path.parse(cc).ext === extension) {
-          traits[c].push(`${path.parse(cc).name}${path.parse(cc).ext}`);
+          traits[c].push(`${path.parse(cc).name}`);
         }
       }
     }

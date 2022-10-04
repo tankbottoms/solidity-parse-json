@@ -1,1 +1,13 @@
-{"Background":[21,0,63],"Brows":[2,6,15],"Collar":[14,10,15],"Ears":[2,14,15],"Eyes":[13,18,15],"Fur":[14,22,15],"Headwear":[24,26,63],"Nipples":[2,32,15],"Nose":[10,36,15],"Noun_glasses":[31,40,63],"Signature":[1,46,1]}
+{
+  "Background": [21, 0, 63],
+  "Brows": [2, 6, 15],
+  "Collar": [14, 10, 15],
+  "Ears": [2, 14, 15],
+  "Eyes": [13, 18, 15],
+  "Fur": [14, 22, 15],
+  "Headwear": [24, 26, 63],
+  "Nipples": [2, 32, 15],
+  "Nose": [10, 36, 15],
+  "Noun_glasses": [31, 40, 63],
+  "Signature": [1, 46, 1]
+}
